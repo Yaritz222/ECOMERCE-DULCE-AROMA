@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - Dulce Aroma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .products-header {
+            text-align: center;
+            padding: 100px 20px 40px;
+            background-color: var(--color-light);
+        }
+        
+        .products-header h1 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--color-text);
+        }
+        
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .category-tab {
+            padding: 8px 20px;
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .category-tab.active,
+        .category-tab:hover {
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+        
+        .category-section {
+            display: none;
+            padding: 40px 0 80px;
+        }
+        
+        .category-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--color-text);
+            display: inline-block;
+            padding-bottom: 10px;
+            position: relative;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--color-accent);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="img/logo.png" alt="Dulce Aroma Logo">
+                </a>
+                <nav class="nav">
+                    <button class="nav-toggle" aria-label="Menú">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <ul class="nav-menu">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="products.html" class="active">Productos</a></li>
+                        <li><a href="about.html">Nosotros</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
+                        <li class="cart-icon">
+                            <a href="cart.html">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="cart-count">0</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="products-header">
+            <div class="container">
+                <h1>Nuestros Productos</h1>
+                <p>Descubre nuestra deliciosa selección de postres artesanales</p>
+                
+                <div class="category-tabs">
+                    <div class="category-tab active" data-category="pasteles">Pasteles</div>
+                    <div class="category-tab" data-category="galletas">Galletas</div>
+                    <div class="category-tab" data-category="bebidas">Bebidas</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pasteles -->
+        <section id="pasteles" class="category-section active">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Pasteles</h2>
+                </div>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1551024601-bec78aea704c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Pastel de Chocolate">
+                        <h3>Pastel de Chocolate</h3>
+                        <p class="price">$15.99</p>
+                        <button class="btn" onclick="addItem(1, 'Pastel de Chocolate', 15.99)">Agregar al Carrito</button>
+                    </div>
+                    
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1571115760555-604a0c0f8d7c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Pastel de Fresa">
+                        <h3>Pastel de Fresa</h3>
+                        <p class="price">$16.99</p>
+                        <button class="btn" onclick="addItem(2, 'Pastel de Fresa', 16.99)">Agregar al Carrito</button>
+                    </div>
+                    
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1571115760555-604a0c0f8d7c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Pastel de Vainilla">
+                        <h3>Pastel de Vainilla</h3>
+                        <p class="price">$14.99</p>
+                        <button class="btn" onclick="addItem(3, 'Pastel de Vainilla', 14.99)">Agregar al Carrito</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Galletas -->
+        <section id="galletas" class="category-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Galletas</h2>
+                </div>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Galletas de Chocolate">
+                        <h3>Galletas de Chocolate</h3>
+                        <p class="price">$8.99</p>
+                        <button class="btn" onclick="addItem(4, 'Galletas de Chocolate', 8.99)">Agregar al Carrito</button>
+                    </div>
+                    
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1551024601-bec78aea704c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Galletas de Avena">
+                        <h3>Galletas de Avena</h3>
+                        <p class="price">$7.99</p>
+                        <button class="btn" onclick="addItem(5, 'Galletas de Avena', 7.99)">Agregar al Carrito</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bebidas -->
+        <section id="bebidas" class="category-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Bebidas</h2>
+                </div>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1517701550923-78e9190340ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Café Americano">
+                        <h3>Café Americano</h3>
+                        <p class="price">$3.50</p>
+                        <button class="btn" onclick="addItem(6, 'Café Americano', 3.50)">Agregar al Carrito</button>
+                    </div>
+                    
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Té de Frutos Rojos">
+                        <h3>Té de Frutos Rojos</h3>
+                        <p class="price">$4.50</p>
+                        <button class="btn" onclick="addItem(7, 'Té de Frutos Rojos', 4.50)">Agregar al Carrito</button>
+                    </div>
+                    
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Chocolate Caliente">
+                        <h3>Chocolate Caliente</h3>
+                        <p class="price">$4.99</p>
+                        <button class="btn" onclick="addItem(8, 'Chocolate Caliente', 4.99)">Agregar al Carrito</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="products.html">Productos</a></li>
+                        <li><a href="about.html">Nosotros</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Soporte</h4>
+                    <ul>
+                        <li><a href="pages/help.html">Ayuda</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="pages/terms.html">Términos y Condiciones</a></li>
+                        <li><a href="pages/privacy.html">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Dulce Aroma. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Category tabs functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.category-tab');
+            const sections = document.querySelectorAll('.category-section');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs and sections
+                    tabs.forEach(t => t.classList.remove('active'));
+                    sections.forEach(s => s.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+                    
+                    // Show corresponding section
+                    const category = tab.getAttribute('data-category');
+                    document.getElementById(category).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

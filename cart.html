@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito - Dulce Aroma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .cart-page {
+            padding: 120px 20px 60px;
+            min-height: 70vh;
+        }
+        
+        .cart-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .cart-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .cart-header h1 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: var(--color-text);
+            margin-bottom: 15px;
+        }
+        
+        .cart-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .cart-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        
+        @media (min-width: 992px) {
+            .cart-content {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+        
+        .cart-items {
+            background: var(--color-light);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .cart-item {
+            display: grid;
+            grid-template-columns: 100px 1fr auto;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--color-border);
+            align-items: center;
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cart-item img {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+        }
+        
+        .cart-item-details h4 {
+            font-family: var(--font-heading);
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+        
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .qty-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--color-border);
+            background: var(--color-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .qty-btn:hover {
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+        
+        .qty {
+            min-width: 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .remove-btn {
+            background: none;
+            border: none;
+            color: #dc3545;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: var(--transition);
+        }
+        
+        .remove-btn:hover {
+            color: #a71d2a;
+        }
+        
+        .cart-item-total {
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-align: right;
+        }
+        
+        .cart-summary {
+            background: var(--color-light);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            height: fit-content;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .summary-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--color-border);
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .summary-total {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 25px 0;
+            padding-top: 15px;
+            border-top: 1px solid var(--color-border);
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--color-text);
+        }
+        
+        .btn-outline:hover {
+            background: #f5f5f5;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--color-light);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .empty-cart i {
+            font-size: 3rem;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+        
+        .empty-cart h3 {
+            font-family: var(--font-heading);
+            margin-bottom: 15px;
+            color: var(--color-text);
+        }
+        
+        .empty-cart p {
+            color: #666;
+            margin-bottom: 25px;
+        }
+        
+        @media (max-width: 768px) {
+            .cart-item {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .cart-item-actions {
+                justify-content: center;
+            }
+            
+            .cart-item-total {
+                text-align: center;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="img/logo.png" alt="Dulce Aroma Logo">
+                </a>
+                <nav class="nav">
+                    <button class="nav-toggle" aria-label="Menú">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <ul class="nav-menu">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="products.html">Productos</a></li>
+                        <li><a href="about.html">Nosotros</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
+                        <li class="cart-icon">
+                            <a href="cart.html">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="cart-count">0</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="cart-page">
+        <div class="cart-container">
+            <div class="cart-header">
+                <h1>Tu Carrito</h1>
+                <p>Revisa tus productos antes de finalizar tu compra</p>
+            </div>
+            
+            <div class="cart-content">
+                <div class="cart-items">
+                    <!-- Los elementos del carrito se renderizarán aquí con JavaScript -->
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h3>Tu carrito está vacío</h3>
+                        <p>¡Aún no has agregado productos a tu carrito!</p>
+                        <a href="products.html" class="btn">Ver Productos</a>
+                    </div>
+                </div>
+                
+                <div class="cart-summary">
+                    <h3 class="summary-title">Resumen del Pedido</h3>
+                    
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span class="cart-subtotal">$0.00</span>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span>Envío</span>
+                        <span>Gratis</span>
+                    </div>
+                    
+                    <div class="summary-row summary-total">
+                        <span>Total</span>
+                        <span class="cart-total">$0.00</span>
+                    </div>
+                    
+                    <button class="btn btn-block" onclick="checkout()">Proceder al Pago</button>
+                    <button class="btn btn-block btn-outline" onclick="clearCart()">Vaciar Carrito</button>
+                    <a href="products.html" class="btn btn-block btn-outline">Seguir Comprando</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="products.html">Productos</a></li>
+                        <li><a href="about.html">Nosotros</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Soporte</h4>
+                    <ul>
+                        <li><a href="pages/help.html">Ayuda</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="pages/terms.html">Términos y Condiciones</a></li>
+                        <li><a href="pages/privacy.html">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Dulce Aroma. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Renderizar el carrito al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCart();
+            
+            // Actualizar el subtotal
+            updateCartSubtotal();
+        });
+        
+        // Función para actualizar el subtotal
+        function updateCartSubtotal() {
+            const subtotalElement = document.querySelector('.cart-subtotal');
+            const totalElement = document.querySelector('.cart-total');
+            
+            if (subtotalElement && totalElement) {
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                subtotalElement.textContent = `$${total.toFixed(2)}`;
+                totalElement.textContent = `$${total.toFixed(2)}`;
+            }
+        }
+        
+        // Sobrescribir la función renderCart para incluir el subtotal
+        const originalRenderCart = window.renderCart;
+        window.renderCart = function() {
+            originalRenderCart();
+            updateCartSubtotal();
+            
+            // Ocultar el mensaje de carrito vacío si hay productos
+            const emptyCart = document.querySelector('.empty-cart');
+            if (emptyCart) {
+                emptyCart.style.display = cart.length > 0 ? 'none' : 'block';
+            }
+        };
+        
+        // Sobrescribir la función clearCart para actualizar la UI
+        const originalClearCart = window.clearCart;
+        window.clearCart = function() {
+            originalClearCart();
+            updateCartSubtotal();
+        };
+    </script>
+</body>
+</html>

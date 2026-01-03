@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dulce Aroma - Inicio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="img/logo.png" alt="Dulce Aroma Logo">
+                </a>
+                <nav class="nav">
+                    <button class="nav-toggle" aria-label="Menú">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="active">Inicio</a></li>
+                        <li><a href="products.html">Productos</a></li>
+                        <li><a href="about.html">Nosotros</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
+                        <li class="cart-icon">
+                            <a href="cart.html">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="cart-count">0</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Siente el Dulce Aroma</h1>
+                <p>Deliciosos postres artesanales hechos con ingredientes de la más alta calidad</p>
+                <a href="products.html" class="btn">Ver Menú</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1562440499-64c9a111f713?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Postres Dulce Aroma">
+            </div>
+        </section>
+
+        <section class="featured container">
+            <h2>Postres Destacados</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1551024601-bec78aea704c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Pastel de Chocolate">
+                    <h3>Pastel de Chocolate</h3>
+                    <p class="price">$15.99</p>
+                    <button class="btn" onclick="addItem(1, 'Pastel de Chocolate', 15.99)">Agregar al Carrito</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Galletas Decoradas">
+                    <h3>Galletas Decoradas</h3>
+                    <p class="price">$8.99</p>
+                    <button class="btn" onclick="addItem(2, 'Galletas Decoradas', 8.99)">Agregar al Carrito</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1509440559591-4e0fd82b787b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Cupcakes de Vainilla">
+                    <h3>Cupcakes de Vainilla</h3>
+                    <p class="price">$12.99</p>
+                    <button class="btn" onclick="addItem(3, 'Cupcakes de Vainilla', 12.99)">Agregar al Carrito</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="products.html">Productos</a></li>
+                        <li><a href="about.html">Nosotros</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Soporte</h4>
+                    <ul>
+                        <li><a href="pages/help.html">Ayuda</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="pages/terms.html">Términos y Condiciones</a></li>
+                        <li><a href="pages/privacy.html">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Dulce Aroma. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
